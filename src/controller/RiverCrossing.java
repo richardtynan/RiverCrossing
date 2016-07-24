@@ -6,7 +6,7 @@ import javax.swing.JTabbedPane;
 
 import model.Model;
 
-public class MainFrame {
+public class RiverCrossing {
 
 	public static void main(String[] args) {
 		JTabbedPane jtp = new JTabbedPane();
