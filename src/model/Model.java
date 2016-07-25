@@ -244,7 +244,11 @@ public class Model extends Observable {
 	}
 
 	public void resetGame() {
-		System.out.println("Reset Game");
-		//resetConfig();
+		this.farmer = Model.LEFT;
+		this.fox = Model.LEFT;
+		this.chicken = Model.LEFT;
+		this.grain = Model.LEFT;
+		this.setChanged();
+		this.notifyObservers("resetGame");
 	}
 }

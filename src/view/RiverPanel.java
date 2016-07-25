@@ -51,11 +51,15 @@ public class RiverPanel extends JPanel implements Observer, MouseListener, Actio
 	private int grainCount;
 	private JButton resetConfig;
 	private JButton resetGame;
+	
+	private boolean busy;
 
 	public RiverPanel(Model model) {
 		this.model = model;
 		model.addObserver(this);
 
+		this.busy = false;
+		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints g = new GridBagConstraints();
 
@@ -206,9 +210,21 @@ public class RiverPanel extends JPanel implements Observer, MouseListener, Actio
 			farmer.setLocation(0, 0);
 			farmer.setIcon(boatIcon);
 			drawBanks();
+		} else if (op.equals("resetGame")) {
+			farmer.setLocation(0, 0);
+			farmer.setIcon(boatIcon);
+			chickenCount = 1;
+			this.chickenLabel.setText("Chicken count: " + chickenCount + "  ");
+			grainCount = 1;
+			this.grainLabel.setText("Grain count: " + grainCount + "  ");
+			drawBanks();
 		}
 	}
 
+	public boolean getBusy() {
+		return busy;
+	}
+	
 	public void moveEmptyRight() {
 		moveRight(boatIcon, null);
 	}
@@ -250,6 +266,7 @@ public class RiverPanel extends JPanel implements Observer, MouseListener, Actio
 	}
 
 	private void move(ImageIcon boat, JLabel from, int dist, int step) {
+		busy = true;
 		new Thread(new Runnable() {
 			// badness
 			public void run() {
@@ -267,6 +284,7 @@ public class RiverPanel extends JPanel implements Observer, MouseListener, Actio
 				}
 				farmer.setIcon(boatIcon);
 				drawBanks();
+				busy = false;
 			}
 		}).start();
 	}
@@ -358,7 +376,9 @@ public class RiverPanel extends JPanel implements Observer, MouseListener, Actio
 		rightFox.addMouseListener(this);
 		rightChicken.addMouseListener(this);
 		rightGrain.addMouseListener(this);
-
+	}
+	
+	public void addButtonListeners() {
 		resetConfig.addActionListener(this);
 		resetGame.addActionListener(this);
 	}

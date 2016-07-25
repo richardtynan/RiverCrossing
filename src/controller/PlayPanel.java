@@ -27,7 +27,7 @@ public class PlayPanel extends JPanel {
 		inst.setEditable(false);
 		g.gridx = 0;
 		g.gridy = 0;
-		g.weightx = 0.5;
+		g.weightx = 1;
 		g.weighty = 0;
 		g.gridwidth = 1;
 		g.fill = GridBagConstraints.BOTH;
@@ -36,6 +36,7 @@ public class PlayPanel extends JPanel {
 		RiverPanel river = new RiverPanel(model);
 		river.setOpaque(false);
 		river.addListeners();
+		river.addButtonListeners();
 		g.gridx = 0;
 		g.gridy = 1;
 		g.weightx = 1;

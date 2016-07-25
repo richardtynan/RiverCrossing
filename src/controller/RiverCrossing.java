@@ -17,7 +17,7 @@ public class RiverCrossing {
 		jtp.add("learning", new JPanel());
 		jtp.setSelectedIndex(0);
 
-		JFrame frame = new JFrame("River and Boat");
+		JFrame frame = new JFrame("River Crossing");
 		frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(jtp);
