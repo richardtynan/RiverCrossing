@@ -18,7 +18,8 @@ public class SolutionPanel extends JPanel implements ActionListener {
 
 	private Model model;
 	private JPanel alg;
-	private JButton farmer;
+	private JButton farmerLeft;
+	private JButton farmerRight;
 	private JButton foxLeft;
 	private JButton foxRight;
 	private JButton chickenLeft;
@@ -72,10 +73,14 @@ public class SolutionPanel extends JPanel implements ActionListener {
 		options.add(grainRight);
 		grainRight.addActionListener(this);
 
-		farmer = new JButton("farmer");
-		farmer.setEnabled(false);
-		farmer.addActionListener(this);
-		options.add(farmer);
+		farmerLeft = new JButton("farmerLeft");
+		farmerLeft.setEnabled(false);
+		options.add(farmerLeft);
+		farmerLeft.addActionListener(this);
+		farmerRight = new JButton("farmerRight");
+		farmerRight.setEnabled(false);
+		options.add(farmerRight);
+		farmerRight.addActionListener(this);
 
 		go = new JButton("Go");
 		options.add(go);

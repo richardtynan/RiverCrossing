@@ -344,7 +344,11 @@ public class RiverPanel extends JPanel implements Observer, MouseListener, Actio
 
 	public void mouseClicked(MouseEvent e) {
 		if (e.getSource().equals(farmer)) {
-			model.move("farmer");
+			if (model.isFarmerLeft()) {
+				model.move("farmerRight");
+			} else {
+				model.move("farmerLeft");
+			}
 		} else if (e.getSource().equals(leftFox)) {
 			model.move("foxRight");
 		} else if (e.getSource().equals(leftChicken)) {

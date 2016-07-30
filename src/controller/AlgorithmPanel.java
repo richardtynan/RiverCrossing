@@ -18,7 +18,8 @@ public class AlgorithmPanel extends JPanel implements ActionListener {
 
 	private Model model;
 	private JPanel alg;
-	private JButton farmer;
+	private JButton farmerLeft;
+	private JButton farmerRight;
 	private JButton foxLeft;
 	private JButton foxRight;
 	private JButton chickenLeft;
@@ -28,7 +29,7 @@ public class AlgorithmPanel extends JPanel implements ActionListener {
 	private JScrollPane algScroll;
 	private JButton go;
 	private RiverPanel river;
-
+	
 	public AlgorithmPanel(Model model) {
 		this.model = model;
 
@@ -66,10 +67,13 @@ public class AlgorithmPanel extends JPanel implements ActionListener {
 		options.add(grainRight);
 		grainRight.addActionListener(this);
 
-		farmer = new JButton("farmer");
-		farmer.addActionListener(this);
-		options.add(farmer);
-
+		farmerLeft = new JButton("farmerLeft");
+		options.add(farmerLeft);
+		farmerLeft.addActionListener(this);
+		farmerRight = new JButton("farmerRight");
+		options.add(farmerRight);
+		farmerRight.addActionListener(this);
+		
 		go = new JButton("Go");
 		options.add(go);
 		go.addActionListener(this);
@@ -140,17 +144,19 @@ public class AlgorithmPanel extends JPanel implements ActionListener {
 			addStep("grainLeft (click to remove)");
 		} else if (e.getSource().equals(grainRight)) {
 			addStep("grainRight (click to remove)");
-		} else if (e.getSource().equals(farmer)) {
-			addStep("farmer (click to remove)");
+		} else if (e.getSource().equals(farmerLeft)) {
+			addStep("farmerLeft (click to remove)");
+		} else if (e.getSource().equals(farmerRight)) {
+			addStep("farmerRight (click to remove)");
 		}
-		algScroll.getVerticalScrollBar().setValue(alg.getHeight() + 100);
-		alg.revalidate();
 	}
 
 	private void addStep(String step) {
 		JButton blah = new JButton(step);
 		blah.addActionListener(this);
 		alg.add(blah, alg.getComponentCount() - 2);
+		algScroll.getVerticalScrollBar().setValue(alg.getHeight() + 100);
+		alg.revalidate();
 	}
 
 }

@@ -33,11 +33,10 @@ public class Model extends Observable {
 			return moveChickenLeft();
 		else if (op.equals("grainLeft"))
 			return moveGrainLeft();
-		else if (op.equals("farmer")) {
-			if (isFarmerLeft())
-				return moveFarmerRight();
-			else
-				return moveFarmerLeft();
+		else if (op.equals("farmerRight")) {
+			return moveFarmerRight();
+		} else if (op.equals("farmerLeft")) {
+			return moveFarmerLeft();
 		}
 		return false;
 	}
@@ -211,11 +210,11 @@ public class Model extends Observable {
 	public boolean canMoveGrainRight() {
 		return this.isFarmerLeft() && isGrainLeft();
 	}
-	
+
 	public boolean isGoal() {
 		return farmer == 'R' && fox == 'R' && chicken == 'R' && grain == 'R';
 	}
-	
+
 	public boolean leftInvalid() {
 		if (fox == 'L' && chicken == 'L' && farmer == 'R') {
 			return true;
@@ -224,8 +223,8 @@ public class Model extends Observable {
 		}
 		return false;
 	}
-		
-	public boolean rightInvalid() {	
+
+	public boolean rightInvalid() {
 		if (fox == 'R' && chicken == 'R' && farmer == 'L') {
 			return true;
 		} else if (chicken == 'R' && grain == 'R' && farmer == 'L') {
