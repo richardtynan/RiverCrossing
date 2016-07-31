@@ -1,7 +1,6 @@
 package controller;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import model.Model;
@@ -13,9 +12,10 @@ public class RiverCrossing {
 		jtp.add("play", new PlayPanel(new Model('L', 'L', 'L', 'L')));
 		jtp.add("algorithm", new AlgorithmPanel(new Model('L', 'L', 'L', 'L')));
 		jtp.add("solution", new SolutionPanel(new Model('L', 'L', 'L', 'L')));
-		jtp.add("intelligent", new IntelligentPanel(new Model('L', 'L', 'L', 'L')));
-		jtp.add("learning", new JPanel());
-		jtp.setSelectedIndex(3);
+		jtp.add("intelligent fox", new FoxFirstPanel(new Model('L', 'L', 'L', 'L')));
+		jtp.add("intelligent grain", new GrainFirstPanel(new Model('L', 'L', 'L', 'L')));
+		jtp.add("learning", new LearningPanel(new Model('L', 'L', 'L', 'L')));
+		jtp.setSelectedIndex(5);
 
 		JFrame frame = new JFrame("River Crossing");
 		frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);

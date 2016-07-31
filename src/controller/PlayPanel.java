@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -11,11 +12,14 @@ import javax.swing.JTextArea;
 import model.Model;
 import view.RiverPanel;
 
-public class PlayPanel extends JPanel {
+public class PlayPanel extends APanel {
 
 	public PlayPanel(Model model) {
+		super(model);
+	}
 
-		this.setLayout(new GridBagLayout());
+	protected JPanel createPanel() {
+		JPanel p = new JPanel(new GridBagLayout());
 		GridBagConstraints g = new GridBagConstraints();
 
 		JTextArea inst = new JTextArea("Instructions:\n" + "1. Click the item to transfer it to a different bank.\n"
@@ -31,20 +35,13 @@ public class PlayPanel extends JPanel {
 		g.weighty = 0;
 		g.gridwidth = 1;
 		g.fill = GridBagConstraints.BOTH;
-		this.add(inst, g);
+		p.add(inst, g);
+		return p;
+	}
 
-		RiverPanel river = new RiverPanel(model);
-		river.setOpaque(false);
+	protected void addControls() {
 		river.addListeners();
 		river.addButtonListeners();
-		g.gridx = 0;
-		g.gridy = 1;
-		g.weightx = 1;
-		g.weighty = 1;
-		g.gridwidth = 2;
-		g.fill = GridBagConstraints.BOTH;
-		this.add(river, g);
-
 	}
 
 }

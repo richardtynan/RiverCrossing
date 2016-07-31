@@ -59,7 +59,7 @@ public class RiverPanel extends JPanel implements Observer, MouseListener, Actio
 		model.addObserver(this);
 
 		this.busy = false;
-		
+		this.setOpaque(true);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints g = new GridBagConstraints();
 
