@@ -125,6 +125,8 @@ public class State {
 
 	public boolean invalid() {
 		Vector<State> invalid = new Vector<>();
+		invalid.addElement(new State(null, null, "L", "R", "R", "R"));
+		invalid.addElement(new State(null, null, "R", "L", "L", "L"));
 		invalid.addElement(new State(null, null, "L", "L", "R", "R"));
 		invalid.addElement(new State(null, null, "R", "R", "L", "L"));
 		invalid.addElement(new State(null, null, "L", "R", "R", "L"));
