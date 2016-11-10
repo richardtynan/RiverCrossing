@@ -33,6 +33,7 @@ public abstract class IntelligentPanel extends APanel implements ActionListener 
 		if (e.getSource().equals(go)) {
 			go();
 		} else if (e.getSource().equals(think)) {
+			resetSteps();
 			think();
 		}
 	}
@@ -63,8 +64,15 @@ public abstract class IntelligentPanel extends APanel implements ActionListener 
 		new Thread(new Runnable() {
 			// badness
 			public void run() {
-				State start = new State(null, null, "L", "L", "L", "L");
-				State goal = new State(null, null, "R", "R", "R", "R");
+				Vector<State> invalid = new Vector<>();
+				invalid.addElement(new State(null, null, "L", "R", "R", "R", null));
+				invalid.addElement(new State(null, null, "R", "L", "L", "L", null));
+				invalid.addElement(new State(null, null, "L", "L", "R", "R", null));
+				invalid.addElement(new State(null, null, "R", "R", "L", "L", null));
+				invalid.addElement(new State(null, null, "L", "R", "R", "L", null));
+				invalid.addElement(new State(null, null, "R", "L", "L", "R", null));
+				State start = new State(null, null, "L", "L", "L", "L", invalid);
+				State goal = new State(null, null, "R", "R", "R", "R", invalid);
 
 				Vector<State> children = new Vector<>();
 				children.addElement(start);
@@ -131,7 +139,7 @@ public abstract class IntelligentPanel extends APanel implements ActionListener 
 				+ "Goal: [  R(farmer), R(fox), R(chicken, R(grain) ]\n\n" + "Operators:\n" + "1. Move fox left/right.\n"
 				+ "2. Move chicken left/right.\n" + "3. Move grain left/right.\n" + "4. Move boat left/right.\n\n"
 				+ "Invalid states: [L,L,R,R], [R,R,L,L], [L,R,R,L], [R,L,L,R]\n\n"
-				+ "Constraints: The farmer can only move an item from the bank they are on.");
+				+ "Constraints: The farmer can only move an item from the\nbank they are on.");
 		inst.setEditable(false);
 		inst.setOpaque(false);
 		g.gridx = 0;
@@ -199,5 +207,11 @@ public abstract class IntelligentPanel extends APanel implements ActionListener 
 
 	protected void addControls() {
 		river.addButtonListeners();
+	}
+	
+	protected void resetSteps() {
+		while (alg.getComponentCount() > 4) {
+			alg.remove(2);
+		}
 	}
 }

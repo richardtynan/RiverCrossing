@@ -258,7 +258,7 @@ public class RiverPanel extends JPanel implements Observer, MouseListener, Actio
 	}
 
 	private void moveRight(ImageIcon boat, JLabel from) {
-		move(boat, from, this.getWidth() - this.farmer.getWidth() - 120, 10);
+		move(boat, from, this.getWidth() - this.farmer.getWidth() - 60, 10);
 	}
 
 	private void moveLeft(ImageIcon boat, JLabel from) {
